@@ -11,15 +11,18 @@
 /* ************************************************************************** */
 
 #include "libft.h"
-#include "checker.h"
 
 int			ft_isnbr(char *str)
 {
-	while (*str)
-	{
-		if (!(*str >= '0' && *str <= '9'))
-			return (0);
-		str++;
-	}
-	return (1);
+    if (*str == '-')
+	str++;
+    if (!*str)
+	return (0);
+    while (*str)
+    {
+	if (!(*str >= '0' && *str <= '9'))
+	    return (0);
+	str++;
+    }
+    return (1);
 }
