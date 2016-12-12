@@ -16,6 +16,7 @@ void	ft_pa(t_list **a, t_list **b)
     if (*b)
 		ft_lstadd(a, *b);
 }
+
 void	ft_ra(t_list **a, t_list **b)
 {
 	t_list	*tmp;

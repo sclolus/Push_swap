@@ -6,12 +6,12 @@
 /*   By: sclolus <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/12 15:30:40 by sclolus           #+#    #+#             */
-/*   Updated: 2016/12/12 15:32:56 by sclolus          ###   ########.fr       */
+/*   Updated: 2016/12/12 15:35:15 by sclolus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
 #include "checker.h"
-#include "checker.c"
 
 void		ft_ss(t_list **a, t_list **b)
 {

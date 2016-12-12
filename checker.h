@@ -18,4 +18,18 @@ int				ft_issorted(t_list *a);
 void			ft_init_op_ids(t_op *ops);
 void			ft_init_op_functions(t_op *ops);
 
+void			ft_sa(t_list **a, t_list **b);
+void			ft_pa(t_list **a, t_list **b);
+void			ft_ra(t_list **a, t_list **b);
+void			ft_rra(t_list **a, t_list **b);
+
+void			ft_sb(t_list **a, t_list **b);
+void			ft_pb(t_list **a, t_list **b);
+void		s	ft_rb(t_list **a, t_list **b);
+void			ft_rrb(t_list **a, t_list **b);
+
+void			ft_ss(t_list **a, t_list **b);
+void			ft_rr(t_list **a, t_list **b);
+void			ft_rrr(t_list **a, t_list **b);
+
 #endif
