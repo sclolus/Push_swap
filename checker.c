@@ -6,7 +6,7 @@
 /*   By: sclolus <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/11 17:21:03 by sclolus           #+#    #+#             */
-/*   Updated: 2016/12/11 23:07:09 by sclolus          ###   ########.fr       */
+/*   Updated: 2016/12/12 15:38:17 by sclolus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int			ft_issorted(t_list *a)
 		return (1);
 }
 
-/*void			ft_init_op_ids(t_op *ops)
+void			ft_init_op_ids(t_op *ops)
 {
 	ops[0].id = ft_strdup("sa");
 	ops[1].id = ft_strdup("sb");
@@ -98,8 +98,8 @@ t_op			*ft_get_op_tab(void)
 	return (0);
 	ft_init_op_ids(ops);
 	ft_init_op_functions(ops);
-    return (ops);
-	}*/
+	return (ops);
+}
 
 int			main(int argc, char **argv)
 {
