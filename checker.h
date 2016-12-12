@@ -8,7 +8,7 @@
 typedef struct	s_op
 {
     char    *id;
-    void    (*f)(long *tab, long *b);
+    void    (*f)(t_list **, t_list **);
 }				t_op;
 
 long			ft_isint(char *str);
