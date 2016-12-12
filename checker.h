@@ -25,7 +25,7 @@ void			ft_rra(t_list **a, t_list **b);
 
 void			ft_sb(t_list **a, t_list **b);
 void			ft_pb(t_list **a, t_list **b);
-void		s	ft_rb(t_list **a, t_list **b);
+void			ft_rb(t_list **a, t_list **b);
 void			ft_rrb(t_list **a, t_list **b);
 
 void			ft_ss(t_list **a, t_list **b);
