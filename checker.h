@@ -32,4 +32,6 @@ void			ft_ss(t_list **a, t_list **b);
 void			ft_rr(t_list **a, t_list **b);
 void			ft_rrr(t_list **a, t_list **b);
 
+void			ft_print_stacks(t_list *a, t_list *b);
+
 #endif

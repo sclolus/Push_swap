@@ -13,22 +13,31 @@ void	ft_sb(t_list **a, t_list **b)
 
 void	ft_pb(t_list **a, t_list **b)
 {
-    if (*a)
+	t_list	*tmp;
+
+	if (*a)
+	{
+		tmp = (*a)->next;
 		ft_lstadd(b, *a);
+		*a = tmp;
+	}
 }
 
 void	ft_rb(t_list **a, t_list **b)
 {
 	t_list	*tmp;
+	t_list	*tmp_2;
 	
-	if (*b)
+	if (*b && (*b)->next)
 	{
+		tmp_2 = (*b)->next;
 		tmp = *b;
 		while (tmp->next)
 			tmp = tmp->next;
 		if (*b != tmp)
 			tmp->next = *b;
 		(*b)->next = 0;
+		*b = tmp_2;
 	}
 }
 
@@ -38,14 +47,16 @@ void	ft_rrb(t_list **a, t_list **b)
 	t_list	*tmp_2;
 
 	tmp = *b;
-	while (tmp->next)
+	if (*b && (*b)->next)
 	{
-		if (!tmp->next->next)
-			tmp_2 = tmp;
-		tmp = tmp->next;
+		while (tmp->next)
+		{
+			if (!tmp->next->next)
+				tmp_2 = tmp;
+			tmp = tmp->next;
+		}
+		tmp->next = *b;
+		*b = tmp;
+		tmp_2->next = NULL;
 	}
-	tmp->next = *b;
-	*b = tmp;
-	tmp_2->next = NULL;
 }
-

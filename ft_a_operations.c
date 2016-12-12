@@ -13,22 +13,31 @@ void	ft_sa(t_list **a, t_list **b)
 
 void	ft_pa(t_list **a, t_list **b)
 {
+	t_list	*tmp;
+
     if (*b)
+	{
+		tmp = (*b)->next;
 		ft_lstadd(a, *b);
+	   *b = tmp;
+	}
 }
 
 void	ft_ra(t_list **a, t_list **b)
 {
 	t_list	*tmp;
+	t_list	*tmp_2;
 
-	if (*a)
+	if (*a && (*a)->next)
 	{
+		tmp_2 = (*a)->next;
 		tmp = *a;
 		while (tmp->next)
 			tmp = tmp->next;
 		if (*a != tmp)
 			tmp->next = *a;
 		(*a)->next = 0;
+		*a = tmp_2;
 	}
 }
 
@@ -38,13 +47,17 @@ void	ft_rra(t_list **a, t_list **b)
 	t_list	*tmp_2;
 
 	tmp = *a;
-	while (tmp->next)
+	if (*a && (*a)->next)
 	{
-		if (!tmp->next->next)
-			tmp_2 = tmp;
-		tmp = tmp->next;
+		while (tmp->next)
+		{
+			if (!tmp->next->next)
+				tmp_2 = tmp;
+			tmp = tmp->next;
+		}
+		tmp->next = *a;
+		*a = tmp;
+		tmp_2->next = NULL;
 	}
-	tmp->next = *a;
-	*a = tmp;
-	tmp_2->next = NULL;
+
 }

@@ -6,11 +6,12 @@
 /*   By: sclolus <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/11 17:21:03 by sclolus           #+#    #+#             */
-/*   Updated: 2016/12/12 15:38:17 by sclolus          ###   ########.fr       */
+/*   Updated: 2016/12/12 17:41:13 by sclolus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include "get_next_line.h"
 #include "checker.h"
 
 void			ft_checker(long *tab, unsigned int len, t_op *ops)
@@ -25,20 +26,26 @@ void			ft_checker(long *tab, unsigned int len, t_op *ops)
 	i = len;
 	while (i > 0)
 		ft_lstadd(&a, ft_lstnew(tab + --i, sizeof(long)));
-/*    while (get_next_line(0, line) > 0)
+    while (get_next_line(0, &line) > 0)
     {
+		i = 0;
+		ft_print_stacks(a, b);
 		while (i < NBR_OPERATIONS)
 		{
 			if (!ft_strcmp(ops[i].id, line))
-				ops[i].f(tab, b);
+			{
+				ops[i].f(&a, &b);
+				break ;
+			}
 			i++;
 		}
 		free(line);
     }
-    if (ft_issorted(tab) && *(long*)b->content == IS_NOT_INT)
+	ft_print_stacks(a, b);
+    if (ft_issorted(a) && !b)
 		ft_putstr("OK\n");
     else
-	ft_putstr("KO\n");*/
+		ft_putstr("KO\n");
 }
 
 int			ft_issorted(t_list *a)
@@ -56,8 +63,7 @@ int			ft_issorted(t_list *a)
 			a = a->next;
 		}
 	}
-	else
-		return (1);
+	return (1);
 }
 
 void			ft_init_op_ids(t_op *ops)
@@ -80,11 +86,11 @@ void			ft_init_op_functions(t_op *ops)
 	ops[0].f = &ft_sa;
 	ops[1].f = &ft_sb;
 	ops[2].f = &ft_ss;
-	ops[3].f = &ft_sa;
-	ops[4].f = &ft_pa;
-	ops[5].f = &ft_pb;
-	ops[6].f = &ft_ra;
-	ops[7].f = &ft_ba;
+	ops[3].f = &ft_pa;
+	ops[4].f = &ft_pb;
+	ops[5].f = &ft_ra;
+	ops[6].f = &ft_rb;
+	ops[7].f = &ft_rr;
 	ops[8].f = &ft_rra;
 	ops[9].f = &ft_rrb;
 	ops[10].f = &ft_rrr;
@@ -95,7 +101,7 @@ t_op			*ft_get_op_tab(void)
     t_op    *ops;
 
     if (!(ops = (t_op*)malloc(sizeof(t_op) * NBR_OPERATIONS)))
-	return (0);
+		return (0);
 	ft_init_op_ids(ops);
 	ft_init_op_functions(ops);
 	return (ops);
@@ -120,7 +126,7 @@ int			main(int argc, char **argv)
 		    }
 		    i++;
 		}
-		ft_checker(tab, argc - 1, 0);
+		ft_checker(tab, argc - 1, ft_get_op_tab());
 		free(tab);
 	}
 	else
