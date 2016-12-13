@@ -6,7 +6,7 @@
 /*   By: sclolus <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/12 15:30:40 by sclolus           #+#    #+#             */
-/*   Updated: 2016/12/13 17:43:56 by sclolus          ###   ########.fr       */
+/*   Updated: 2016/12/13 20:31:35 by sclolus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "checker.h"
 #include "get_next_line.h"
 
-int			ft_do_op(t_list **a, t_list **b, unsigned int len, t_op *ops)
+int			ft_do_op(t_list **a, t_list **b, t_op *ops)
 {
 	char			*line;
 	unsigned int	i;

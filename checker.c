@@ -6,17 +6,12 @@
 /*   By: sclolus <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/11 17:21:03 by sclolus           #+#    #+#             */
-/*   Updated: 2016/12/13 17:43:25 by sclolus          ###   ########.fr       */
+/*   Updated: 2016/12/13 20:34:41 by sclolus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "checker.h"
-
-unsigned int	ft_lstlen(t_list *lst)
-{
-	return (!lst->next ? 1 : ft_lstlen(lst->next) + 1);
-}
 
 void			ft_checker(long *tab, unsigned int len, t_op *ops)
 {
@@ -30,7 +25,7 @@ void			ft_checker(long *tab, unsigned int len, t_op *ops)
 	while (i > 0)
 		ft_lstadd(&a, ft_lstnew(tab + --i, sizeof(long)));
 	ft_print_stacks(a, b);
-	if (ft_do_op(&a, &b, len, ops) == -1)
+	if (ft_do_op(&a, &b, ops) == -1)
 		return ;
 	ft_print_stacks(a, b);
 	if (ft_issorted(a) && !b)

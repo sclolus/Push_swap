@@ -6,7 +6,7 @@
 /*   By: sclolus <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/13 17:44:49 by sclolus           #+#    #+#             */
-/*   Updated: 2016/12/13 17:45:47 by sclolus          ###   ########.fr       */
+/*   Updated: 2016/12/13 20:31:28 by sclolus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ typedef struct	s_op
 
 long			ft_isint(char *str);
 t_op			*ft_get_op_tab(void);
-int				ft_do_op(t_list **a, t_list **b, unsigned int len, t_op *ops);
+int				ft_do_op(t_list **a, t_list **b, t_op *ops);
 int				ft_issorted(t_list *a);
 int				ft_isnbr(char *str);
 

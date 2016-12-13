@@ -6,7 +6,7 @@
 /*   By: sclolus <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/13 16:42:22 by sclolus           #+#    #+#             */
-/*   Updated: 2016/12/13 16:45:24 by sclolus          ###   ########.fr       */
+/*   Updated: 2016/12/13 20:33:00 by sclolus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 void	ft_sb(t_list **a, t_list **b)
 {
+	a = 0;
 	if (*b && (*b)->next)
 	{
 		*(long*)(*b)->content ^= *(long*)(*b)->next->content;
@@ -40,6 +41,7 @@ void	ft_rb(t_list **a, t_list **b)
 	t_list	*tmp;
 	t_list	*tmp_2;
 
+	a = 0;
 	if (*b && (*b)->next)
 	{
 		tmp_2 = (*b)->next;
@@ -58,6 +60,7 @@ void	ft_rrb(t_list **a, t_list **b)
 	t_list	*tmp;
 	t_list	*tmp_2;
 
+	a = 0;
 	tmp = *b;
 	if (*b && (*b)->next)
 	{
