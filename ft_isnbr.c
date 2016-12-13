@@ -6,7 +6,7 @@
 /*   By: sclolus <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/11 18:17:58 by sclolus           #+#    #+#             */
-/*   Updated: 2016/12/11 18:18:58 by sclolus          ###   ########.fr       */
+/*   Updated: 2016/12/13 16:43:31 by sclolus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,15 @@
 
 int			ft_isnbr(char *str)
 {
-    if (*str == '-')
-	str++;
-    if (!*str)
-	return (0);
-    while (*str)
-    {
-	if (!(*str >= '0' && *str <= '9'))
-	    return (0);
-	str++;
-    }
-    return (1);
+	if (*str == '-')
+		str++;
+	if (!*str)
+		return (0);
+	while (*str)
+	{
+		if (!(*str >= '0' && *str <= '9'))
+			return (0);
+		str++;
+	}
+	return (1);
 }
