@@ -6,7 +6,7 @@
 /*   By: sclolus <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/14 01:04:48 by sclolus           #+#    #+#             */
-/*   Updated: 2016/12/14 20:22:40 by sclolus          ###   ########.fr       */
+/*   Updated: 2016/12/14 20:54:08 by sclolus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ void	ft_insertion_sort(t_list **a, t_list **b, t_list **ops)
 	curr_i = 0;
 	while (current->next)
 	{
-		ft_print_stacks(*a, *b);
+/*		ft_print_stacks(*a, *b);*/
 		if (*(long*)current->content > *(long*)current->next->content)
 		{	
 			curr_i = ft_lst_get_index(*a, current);
@@ -74,7 +74,7 @@ void	ft_insertion_sort(t_list **a, t_list **b, t_list **ops)
 			tmp_2 = current;
 			while (*(long*)tmp->content < *(long*)tmp_2->content)
 			{
-				ft_putstr("salut les gens");
+
 				if (!(tmp_2 = ft_get_prev(*a, tmp_2)))
 				{
 					tmp_2 = *a;
@@ -84,20 +84,20 @@ void	ft_insertion_sort(t_list **a, t_list **b, t_list **ops)
 			while (*(long*)(*a)->content != *(long*)tmp->content)
 			{
 				ft_ra(a, b);
-				ft_print_stacks(*a, *b);
+/*				ft_print_stacks(*a, *b);*/
 				ft_lstadd(ops, ft_lstnew(ft_strdup("ra"), 8));
 			}
 			ft_pb(a, b);
-			ft_print_stacks(*a, *b);
+/*			ft_print_stacks(*a, *b);*/
 			ft_lstadd(ops, ft_lstnew(ft_strdup("pb"), 8));
 			while (*(long*)(*a)->content != *(long*)tmp_2->content)
 			{
 				ft_ra(a, b);
-				ft_print_stacks(*a, *b);
+/*				ft_print_stacks(*a, *b);*/
 				ft_lstadd(ops, ft_lstnew(ft_strdup("ra"), 8));
 			}
 			ft_pa(a, b);
-			ft_print_stacks(*a, *b);
+/*			ft_print_stacks(*a, *b);*/
 			ft_lstadd(ops, ft_lstnew(ft_strdup("pa"), 8));
 		}
 		curr_i++;
@@ -113,9 +113,9 @@ void	ft_push_swap(t_list	*a)
 
 	b = NULL;
 	ops = 0;
-	ft_print_stacks(a, b);
+/*	ft_print_stacks(a, b);*/
 	ft_insertion_sort(&a, &b, &ops);
-	ft_print_stacks(a, b);
+/*	ft_print_stacks(a, b);*/
 	//ft_quicksort(&a, &b, ops + 1);
 	//???
 /*	lens[0] = ft_lstlen(ops);

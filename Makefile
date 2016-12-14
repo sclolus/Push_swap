@@ -24,11 +24,11 @@ CC_FLAGS= -Wall -Werror -Wextra
 all: $(NAME_CHECKER) $(NAME_PUSHSWAP)
 
 $(NAME_CHECKER): $(OBJ_CHECKER)
-	make -C libft/ re
+	make -C libft/
 	$(CC) $(CC_FLAGS) $^ -L./libft -lft -o $(NAME_CHECKER)
 
 $(NAME_PUSHSWAP): $(OBJ_PUSHSWAP)
-	make -C libft/ re
+	make -C libft/
 	$(CC) $(CC_FLAGS) $^ -L./libft -lft -o $(NAME_PUSHSWAP)
 
 %.o : %.c
