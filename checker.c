@@ -6,7 +6,7 @@
 /*   By: sclolus <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/11 17:21:03 by sclolus           #+#    #+#             */
-/*   Updated: 2016/12/14 20:26:58 by sclolus          ###   ########.fr       */
+/*   Updated: 2016/12/14 21:05:06 by sclolus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,24 +32,6 @@ void			ft_checker(long *tab, unsigned int len, t_op *ops)
 		ft_putstr("OK\n");
 	else
 		ft_putstr("KO\n");
-}
-
-int				ft_issorted(t_list *a)
-{
-	long	tmp;
-
-	if (a && a->next)
-	{
-		tmp = *(long*)a->content;
-		while (a->next)
-		{
-			if (tmp > *(long*)a->next->content)
-				return (0);
-			tmp = *(long*)a->next->content;
-			a = a->next;
-		}
-	}
-	return (1);
 }
 
 int				main(int argc, char **argv)

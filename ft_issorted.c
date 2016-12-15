@@ -1,22 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   ft_issorted.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sclolus <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/12/14 17:30:22 by sclolus           #+#    #+#             */
-/*   Updated: 2016/12/14 23:29:54 by sclolus          ###   ########.fr       */
+/*   Created: 2016/12/14 21:04:45 by sclolus           #+#    #+#             */
+/*   Updated: 2016/12/14 21:05:05 by sclolus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
+#include "libft.h"
 
-t_list	*ft_get_prev(t_list *lst, t_list *stop);
-void	ft_lst_push_back(t_list *lst, t_list *new);
-int		ft_lst_get_index(t_list *base, t_list *lst);
-t_list	*ft_lst_goto_index(t_list *base, unsigned int i);
-void	ft_insertion_sort(t_list **a, t_list **b, t_list *ops);
-void	ft_put_up_stack(t_list **stack, t_list *lst, t_list **ops);
-#endif
+int				ft_issorted(t_list *a)
+{
+	long	tmp;
+
+	if (a && a->next)
+	{
+		tmp = *(long*)a->content;
+		while (a->next)
+		{
+			if (tmp > *(long*)a->next->content)
+				return (0);
+			tmp = *(long*)a->next->content;
+			a = a->next;
+		}
+	}
+	return (1);
+}

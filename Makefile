@@ -7,6 +7,7 @@ SRC_CHECKER= checker.c \
 	ft_a_operations.c \
 	ft_operations.c \
 	ft_print_stacks.c \
+	ft_issorted.c \
 	ft_get_op_tab.c
 SRC_PUSHSWAP= push_swap.c \
 	ft_b_operations.c \
@@ -14,6 +15,7 @@ SRC_PUSHSWAP= push_swap.c \
 	ft_operations.c \
 	ft_print_stacks.c \
 	ft_isint.c \
+	ft_issorted.c \
 	ft_isnbr.c
 OBJ_CHECKER= $(SRC_CHECKER:.c=.o)
 OBJ_PUSHSWAP= $(SRC_PUSHSWAP:.c=.o)
