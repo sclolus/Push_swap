@@ -14,6 +14,7 @@ SRC_PUSHSWAP= push_swap.c \
 	ft_a_operations.c \
 	ft_operations.c \
 	ft_print_stacks.c \
+	ft_insertion_sort.c \
 	ft_isint.c \
 	ft_issorted.c \
 	ft_isnbr.c

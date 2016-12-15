@@ -6,15 +6,18 @@
 /*   By: sclolus <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/14 01:04:48 by sclolus           #+#    #+#             */
-/*   Updated: 2016/12/15 09:27:09 by sclolus          ###   ########.fr       */
+/*   Updated: 2016/12/15 18:53:27 by sclolus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "checker.h"
+#include "push_swap.h"
 
 t_list	*ft_get_prev(t_list *lst, t_list *stop)
 {
+	if (stop == lst)
+		return (ft_lst_goto_index(lst, ft_lstlen(lst) + 1));
 	while (lst->next != stop && lst->next)
 		lst = lst->next;
 	if (lst->next == stop)
@@ -65,7 +68,7 @@ void	ft_put_up_stack(t_list **stack, t_list *lst, t_list **ops)
 	unsigned int	stack_len;
 	unsigned int	lst_i;
 
-	lst_i = ft_lst_get_index(*stack, lst) - 1;
+	lst_i = ft_lst_get_index(*stack, lst);
 	stack_len = ft_lstlen(*stack);
 	if (lst_i > stack_len / 2)
 	{
@@ -85,39 +88,18 @@ void	ft_put_up_stack(t_list **stack, t_list *lst, t_list **ops)
 	}
 }
 
-void	ft_stupid_sort(t_list **a, t_list **b, t_list **ops)
+t_list	*ft_find_lowest(t_list *base)
 {
-	t_list			*current;
-	unsigned int	curr_i;
+	t_list	*tmp;
 
-	current = *a;
-	curr_i = 0;
-	while (current->next)
+	tmp = base;
+	while (base)
 	{
-		ft_print_stacks(*a, *b);
-		if (*(long*)current->content > *(long*)current->next->content)
-		{
-			while (*(long*)(*a)->content != *(long*)current->content)
-			{
-				ft_lstadd(ops, ft_lstnew(ft_strdup("ra"), 8));
-				ft_ra(a, b);
-			}
-			ft_putnbr(*(long*)(*a)->content);
-			ft_putchar(':');
-			ft_lstadd(ops, ft_lstnew(ft_strdup("sa"), 8));
-			ft_sa(a, b);
-			ft_print_stacks(*a, *b);
-			ft_ra(a, b);
-			ft_lstadd(ops, ft_lstnew(ft_strdup("ra"), 8));
-		}
-/*		curr_i++;*/
-		if (!current->next && !ft_issorted(*a))
-			current = *a;
-		else
-			current = current->next;
-/*		current = ft_lst_goto_index(*a, curr_i);*/
+		if (*(long*)base->content < *(long*)tmp->content)
+			tmp = base;
+		base = base->next;
 	}
-/*	ft_print_stacks(*a, *b);*/
+	return (tmp);
 }
 
 int		ft_find_monotonie(t_list **a, t_list **ops)
@@ -154,7 +136,53 @@ int		ft_find_monotonie(t_list **a, t_list **ops)
 	return (0);
 }
 
-void	ft_insertion_sort(t_list **a, t_list **b, t_list **ops)
+t_list	*ft_find_biggest_monotonie(t_list **a)
+{
+	unsigned int	len;
+	unsigned int	l_tmp;
+	t_list			*biggest;
+	t_list			*tmp;
+	t_list			*tmp_2;
+
+	tmp_2 = *a;
+	l_tmp = 0;
+	biggest = *a;
+	while (tmp_2)
+	{
+		tmp = tmp_2;
+		len = 0;
+		if (!(tmp->next) && ((*(long*)tmp->content < *(long*)(*a)->content)))
+		{
+			len++;
+			tmp = *a;
+		}
+		else if (!(tmp->next))
+			break ;
+		while ((*(long*)tmp->content < *(long*)tmp->next->content))
+		{
+			len++;
+			tmp = tmp->next;
+			if (!(tmp->next) && ((*(long*)tmp->content < *(long*)(*a)->content)))
+			{
+				len++;
+				tmp = *a;
+			}
+			else if (!(tmp->next))
+				break ;
+			else if (tmp == tmp_2)
+				break ;
+		}
+		if (len > l_tmp)
+		{
+			l_tmp = len;
+			biggest = tmp_2;
+		}
+		tmp_2 = tmp_2->next;
+	}
+	return (biggest);
+}
+
+/*void	ft_insertion_sort(t_list **a, t_list **b, t_list **ops)
 {
 	t_list			*tmp;
 	t_list			*tmp_2;
@@ -169,38 +197,50 @@ void	ft_insertion_sort(t_list **a, t_list **b, t_list **ops)
 			return ;
 		if (*(long*)current->content > *(long*)current->next->content)
 		{	
-/*			ft_print_stacks(*a, *b);*/
-			tmp = current->next;
+			ft_print_stacks(*a, *b);*/
+/*			tmp = current->next;
 			tmp_2 = current;
-			while (*(long*)tmp->content < *(long*)tmp_2->content)
+			while (tmp_2 && *(long*)tmp->content < *(long*)tmp_2->content)
 			{
-				if (!(tmp_2 = ft_get_prev(*a, tmp_2)))
+				current = tmp_2;
+				tmp_2 = ft_get_prev(*a, tmp_2);
+				if (*(long*)current->content < *(long*)tmp_2)
 				{
-					tmp_2 = (*a);
+					tmp_2 = current;
 					break ;
 				}
 			}
-			if (tmp_2->next == tmp)
+			if (*(long*)tmp_2->content < *(long*)tmp->content)
+				tmp_2 = tmp_2->next;
+			if (!tmp_2)
+				tmp_2 = *a;
+			if (tmp_2->next == tmp && tmp_2 == *a)
 			{
-				ft_sa(a, b);
+			ft_sa(a, b);*/
 /*				ft_print_stacks(*a, *b);*/
-				ft_lstadd(ops, ft_lstnew(ft_strdup("sa"), 8));
+				/*		ft_lstadd(ops, ft_lstnew(ft_strdup("sa"), 8));
 				current = ft_lst_goto_index(*a, curr_i);
 				continue ;
-			}
-			else
-			{
-				ft_put_up_stack(a, tmp, ops);
+				}*/
+			//		else
+//			{
+				//ft_put_up_stack(a, tmp, ops);
 /*				ft_print_stacks(*a, *b);*/
-				ft_pb(a, b);
+				//			ft_pb(a, b);
 /*				ft_print_stacks(*a, *b);*/
-				ft_lstadd(ops, ft_lstnew(ft_strdup("pb"), 8));
-				ft_put_up_stack(a, tmp_2, ops);
+//				ft_lstadd(ops, ft_lstnew(ft_strdup("pb"), 8));
+				//			ft_putnbr(*(long*)tmp->content);
+/*				if (tmp_2 == tmp)
+					ft_put_up_stack(a, *a, ops);
+					else*/
+//				ft_put_up_stack(a, tmp_2, ops);
 /*				ft_print_stacks(*a, *b);*/
-				ft_pa(a, b);
+/*				ft_pa(a, b);
 				ft_lstadd(ops, ft_lstnew(ft_strdup("pa"), 8));
-/*				ft_print_stacks(*a, *b);*/
-			}
+				ft_print_stacks(*a, *b);
+							ft_put_up_stack(a, ft_find_biggest_monotonie(a), ops);
+				ft_print_stacks(*a, *b);*/
+/*			}
 		}
 		curr_i++;
 		current = ft_lst_goto_index(*a, curr_i);
@@ -209,8 +249,9 @@ void	ft_insertion_sort(t_list **a, t_list **b, t_list **ops)
 			current = *a;
 			curr_i = 0;
 		}
-	}
-}
+	}*/
+/*}
+*/
 
 void	ft_push_swap(t_list	*a)
 {
@@ -222,6 +263,7 @@ void	ft_push_swap(t_list	*a)
 	ops = 0;
 /*	ft_print_stacks(a, b);*/
 /*	ft_stupid_sort(&a, &b, &ops);*/
+/*	ft_put_up_stack(&a, ft_get_prev(a, a), &ops);*/
 	ft_insertion_sort(&a, &b, &ops);
 /*	ft_print_stacks(a, b);*/
 	//ft_quicksort(&a, &b, ops + 1);
