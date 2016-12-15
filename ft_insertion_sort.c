@@ -6,7 +6,7 @@
 /*   By: sclolus <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/15 18:07:32 by sclolus           #+#    #+#             */
-/*   Updated: 2016/12/15 18:50:59 by sclolus          ###   ########.fr       */
+/*   Updated: 2016/12/15 20:21:20 by sclolus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ void	ft_insertion_sort(t_list **a, t_list **b, t_list **ops)
 	current = *a;
 	while (current->next)
 	{
+		if (ft_find_monotonie(a, ops))
+			return ;
 		if (*(long*)current->content > *(long*)current->next->content)
 		{
 /*			ft_print_stacks(*a, *b);*/
@@ -43,7 +45,7 @@ void	ft_insertion_sort(t_list **a, t_list **b, t_list **ops)
 			if (current == *a && current->next == tmp)
 			{
 				ft_sa(a, b);
-			ft_lstadd(ops, ft_lstnew(ft_strdup("sa"), ft_strlen("sa")));
+				ft_lstadd(ops, ft_lstnew(ft_strdup("sa"), ft_strlen("sa")));
 				continue ;
 			}
 			ft_put_up_stack(a, tmp, ops);

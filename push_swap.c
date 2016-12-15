@@ -6,7 +6,7 @@
 /*   By: sclolus <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/14 01:04:48 by sclolus           #+#    #+#             */
-/*   Updated: 2016/12/15 18:53:27 by sclolus          ###   ########.fr       */
+/*   Updated: 2016/12/15 20:32:17 by sclolus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 t_list	*ft_get_prev(t_list *lst, t_list *stop)
 {
 	if (stop == lst)
-		return (ft_lst_goto_index(lst, ft_lstlen(lst) + 1));
+		return (ft_lst_goto_index(lst, ft_lstlen(lst)));
 	while (lst->next != stop && lst->next)
 		lst = lst->next;
 	if (lst->next == stop)
@@ -120,7 +120,7 @@ int		ft_find_monotonie(t_list **a, t_list **ops)
 		{
 			if (i > lst_len / 2)
 			{
-				while (i++ < lst_len)
+				while (i-- > 0)
 					ft_lstadd(ops, ft_lstnew(ft_strdup("ra"), 8));
 			}
 			else

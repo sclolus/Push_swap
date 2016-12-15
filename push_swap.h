@@ -6,7 +6,7 @@
 /*   By: sclolus <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/14 17:30:22 by sclolus           #+#    #+#             */
-/*   Updated: 2016/12/15 17:15:21 by sclolus          ###   ########.fr       */
+/*   Updated: 2016/12/15 20:22:07 by sclolus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,4 +20,5 @@ int		ft_lst_get_index(t_list *base, t_list *lst);
 t_list	*ft_lst_goto_index(t_list *base, unsigned int i);
 void	ft_insertion_sort(t_list **a, t_list **b, t_list **ops);
 void	ft_put_up_stack(t_list **stack, t_list *lst, t_list **ops);
+int		ft_find_monotonie(t_list **a, t_list **ops);
 #endif
