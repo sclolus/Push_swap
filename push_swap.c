@@ -6,7 +6,7 @@
 /*   By: sclolus <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/14 01:04:48 by sclolus           #+#    #+#             */
-/*   Updated: 2016/12/15 20:32:17 by sclolus          ###   ########.fr       */
+/*   Updated: 2016/12/16 04:13:56 by sclolus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,10 +70,13 @@ void	ft_put_up_stack(t_list **stack, t_list *lst, t_list **ops)
 
 	lst_i = ft_lst_get_index(*stack, lst);
 	stack_len = ft_lstlen(*stack);
+	ft_print_stacks(*stack, NULL);
 	if (lst_i > stack_len / 2)
 	{
 		while (*stack != lst)
 		{
+			ft_put_chain(lst);
+			ft_putchar('\n');
 			ft_lstadd(ops, ft_lstnew(ft_strdup("rra"), 8));
 			ft_rra(stack, &lst);
 		}
@@ -113,14 +116,17 @@ int		ft_find_monotonie(t_list **a, t_list **ops)
 	tmp = (*a);
 	if (ft_issorted(*a))
 		return (1);
-	ft_rra(a, &tmp);
+	ft_ra(a, &tmp);
 	while (tmp != (*a))
 	{
 		if (ft_issorted(*a))
 		{
-			if (i > lst_len / 2)
+			ft_print_stacks(*a, NULL);
+			ft_put_chain(*a);
+			ft_putchar('\n');
+			if (i > lst_len - i)
 			{
-				while (i-- > 0)
+				while (i++ < lst_len)
 					ft_lstadd(ops, ft_lstnew(ft_strdup("ra"), 8));
 			}
 			else
@@ -130,7 +136,7 @@ int		ft_find_monotonie(t_list **a, t_list **ops)
 			}
 			return (1);
 		}
-		ft_rra(a, &tmp);
+		ft_ra(a, &tmp);
 		i++;
 	}
 	return (0);
@@ -182,77 +188,6 @@ t_list	*ft_find_biggest_monotonie(t_list **a)
 	return (biggest);
 }
 
-/*void	ft_insertion_sort(t_list **a, t_list **b, t_list **ops)
-{
-	t_list			*tmp;
-	t_list			*tmp_2;
-	t_list			*current;
-	unsigned int	curr_i;
-
-	current = *a;
-	curr_i = 0;
-	while (current->next)
-	{
-		if (ft_find_monotonie(a, ops))
-			return ;
-		if (*(long*)current->content > *(long*)current->next->content)
-		{	
-			ft_print_stacks(*a, *b);*/
-/*			tmp = current->next;
-			tmp_2 = current;
-			while (tmp_2 && *(long*)tmp->content < *(long*)tmp_2->content)
-			{
-				current = tmp_2;
-				tmp_2 = ft_get_prev(*a, tmp_2);
-				if (*(long*)current->content < *(long*)tmp_2)
-				{
-					tmp_2 = current;
-					break ;
-				}
-			}
-			if (*(long*)tmp_2->content < *(long*)tmp->content)
-				tmp_2 = tmp_2->next;
-			if (!tmp_2)
-				tmp_2 = *a;
-			if (tmp_2->next == tmp && tmp_2 == *a)
-			{
-			ft_sa(a, b);*/
-/*				ft_print_stacks(*a, *b);*/
-				/*		ft_lstadd(ops, ft_lstnew(ft_strdup("sa"), 8));
-				current = ft_lst_goto_index(*a, curr_i);
-				continue ;
-				}*/
-			//		else
-//			{
-				//ft_put_up_stack(a, tmp, ops);
-/*				ft_print_stacks(*a, *b);*/
-				//			ft_pb(a, b);
-/*				ft_print_stacks(*a, *b);*/
-//				ft_lstadd(ops, ft_lstnew(ft_strdup("pb"), 8));
-				//			ft_putnbr(*(long*)tmp->content);
-/*				if (tmp_2 == tmp)
-					ft_put_up_stack(a, *a, ops);
-					else*/
-//				ft_put_up_stack(a, tmp_2, ops);
-/*				ft_print_stacks(*a, *b);*/
-/*				ft_pa(a, b);
-				ft_lstadd(ops, ft_lstnew(ft_strdup("pa"), 8));
-				ft_print_stacks(*a, *b);
-							ft_put_up_stack(a, ft_find_biggest_monotonie(a), ops);
-				ft_print_stacks(*a, *b);*/
-/*			}
-		}
-		curr_i++;
-		current = ft_lst_goto_index(*a, curr_i);
-		if (!current->next && !ft_issorted(*a))
-		{
-			current = *a;
-			curr_i = 0;
-		}
-	}*/
-/*}
-*/
-
 void	ft_push_swap(t_list	*a)
 {
 	t_list			*b;
@@ -264,7 +199,9 @@ void	ft_push_swap(t_list	*a)
 /*	ft_print_stacks(a, b);*/
 /*	ft_stupid_sort(&a, &b, &ops);*/
 /*	ft_put_up_stack(&a, ft_get_prev(a, a), &ops);*/
-	ft_insertion_sort(&a, &b, &ops);
+/*	ft_insertion_sort(&a, &b, &ops);*/
+	ft_comb_sort(&a, &b, &ops);
+/*	ft_putstr("\nsalut");*/
 /*	ft_print_stacks(a, b);*/
 	//ft_quicksort(&a, &b, ops + 1);
 	//???

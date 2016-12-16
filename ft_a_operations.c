@@ -6,12 +6,21 @@
 /*   By: sclolus <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/13 16:46:06 by sclolus           #+#    #+#             */
-/*   Updated: 2016/12/13 20:32:04 by sclolus          ###   ########.fr       */
+/*   Updated: 2016/12/16 04:31:31 by sclolus          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "checker.h"
+#include "push_swap.h"
+
+void	ft_put_chain(t_list *a)
+{
+	ft_putnbr(*(long*)a->content);
+	ft_putstr("->");
+	if (a->next)
+		ft_put_chain(a->next);
+}
 
 void	ft_sa(t_list **a, t_list **b)
 {
@@ -67,11 +76,26 @@ void	ft_rra(t_list **a, t_list **b)
 		while (tmp->next)
 		{
 			if (!tmp->next->next)
-				tmp_2 = tmp;
+			{
+				ft_putstr("YOOOOOOOOOOOO: ");
+				ft_put_chain(tmp->next);
+				tmp_2 = tmp;}
 			tmp = tmp->next;
 		}
+/*		ft_putchar('\n');
+		ft_putstr("tmp->content ==");
+		ft_putnbr(*(long*)tmp->content);
+		ft_putchar('\n');*/
+
+/*		if (!tmp->next)
+		tmp_2 = tmp;*/
+		ft_put_chain(tmp);
+		ft_putchar('\t');
 		tmp->next = *a;
 		*a = tmp;
 		tmp_2->next = NULL;
+		ft_put_chain(tmp);
+		ft_putstr("_____");
+
 	}
 }
